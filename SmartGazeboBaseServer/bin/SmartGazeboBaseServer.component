@@ -1,7 +1,16 @@
+/**
+ * The SmartGazeboBaseServer can be used to command a robot in a 3D environment using the Gazebo simulator. 
+ * It offers services for controlling the robot via SmartCDL or 
+ * SmartJoystickNavigation by receiving v and omega values from SmartCDL or SmartJoystickNavigation. 
+ * Those values are directly handed over to the Gazebo simulator in case of a differential drive. 
+ * The communication between the SmartGazeboBaseServer and Gazebo is based on the communication lib of gazebo..
+
+ * GPL-License: includes Code from the Player Project.
+
+ * See also: http://playerstage.sourceforge.net/doc/Player-2.0.0/player/group__driver__amcl.html
+ */
 ComponentDefinition SmartGazeboBaseServer {
-	CoordinationSlavePort CoordinationPort implements CommBasicObjects.BaseCoordinationService {
-		
-	}
+
 	
 	// Inputs and Responders
 	InputPort NavVelServiceIn implements CommNavigationObjects.NavigationVelocityService { }
@@ -39,5 +48,12 @@ ComponentDefinition SmartGazeboBaseServer {
 	ComponentParameters SmartGazeboBaseServerParams slave CoordinationPort;
 Activity PollForGazeboConnection
 	{
+	}
+
+		CoordinationSlavePort CoordinationPort implements CommNavigationObjects.BaseCoordinationService {
+		with baseState realizedBy BaseSatateQueryAnsw
+
+		
+		SkillRealizationsRef baseInst 
 	}
 }

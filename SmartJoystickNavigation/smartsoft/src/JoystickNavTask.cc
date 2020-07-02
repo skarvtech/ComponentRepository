@@ -91,6 +91,7 @@ int JoystickNavTask::on_execute()
 	vel.set_vX(js.get_y() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
 	vel.set_omega(js.get_x() * COMP->getGlobalState().getSettings().getMax_steering());
     vel.set_vY(js.get_x2() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
+    vel.set_vZ(js.get_y2() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
 
 //    vel.setUpdateCount(this->getCurrentUpdateCount());
 

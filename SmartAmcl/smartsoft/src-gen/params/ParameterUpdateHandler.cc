@@ -88,6 +88,21 @@ SmartACE::CommParameterResponse ParamUpdateHandler::handleParameter(const SmartA
 			);
 		}
 	}
+	else if (tag == "COMMLOCALIZATIONOBJECTS.LOCALIZATIONPARAMETER.SENSORSTOUSE")
+	{
+		answer.setResponse(SmartACE::ParamResponseType::OK);
+		
+		unsigned short temp_sensorsToUse = 0;
+		if(request.getInteger("1", temp_sensorsToUse) != 0) {
+			answer.setResponse(SmartACE::ParamResponseType::INVALID);
+		}
+		
+		if(answer.getResponse() == SmartACE::ParamResponseType::OK) {
+			triggerHandler.handleCommLocalizationObjects_LocalizationParameter_SENSORSTOUSECore(
+			temp_sensorsToUse
+			);
+		}
+	}
 	else
 	{
 		/////////////////////////////////////////////////////////////////////
