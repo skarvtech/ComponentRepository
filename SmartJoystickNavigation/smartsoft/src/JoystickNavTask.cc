@@ -87,11 +87,50 @@ int JoystickNavTask::on_execute()
 
 	std::cout << js << std::endl;
 
+	// Check if R1 must be pressed or released in order to enable
+	bool enabled = false;
+	if (COMP->getGlobalState().getSettings().getRone_pressed_to_control())
+	{
+		if (js.get_button(7))
+		{
+			enabled = true;
+			std::cout << "R1-pressed, control enabled." << std::endl;
+		}
+		else
+		{
+			enabled = false;
+			std::cout << "R1-released, control disabled." << std::endl;
+		}
+	}
+	else
+	{
+		if (js.get_button(7))
+		{
+			enabled = false;
+			std::cout << "R1-pressed, control disabled." << std::endl;
+		}
+		else
+		{
+			enabled = true;
+			std::cout << "R1-released, control enabled." << std::endl;
+		}
+	}
+
 	// transform joystick-value into navigation-velocity
-	vel.set_vX(js.get_y() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
-	vel.set_omega(js.get_x() * COMP->getGlobalState().getSettings().getMax_steering());
-    vel.set_vY(js.get_x2() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
-    vel.set_vZ(js.get_y2() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
+	if (enabled)
+	{
+		vel.set_vX(js.get_y() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
+		vel.set_omega(js.get_x() * COMP->getGlobalState().getSettings().getMax_steering());
+		vel.set_vY(js.get_x2() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
+		vel.set_vZ(js.get_y2() * COMP->getGlobalState().getSettings().getMax_velocity(), 1.0);
+	}
+	else
+	{
+		vel.set_vX(0, 1.0);
+		vel.set_omega(0);
+		vel.set_vY(0, 1.0);
+		vel.set_vZ(0, 1.0);
+	}
 
 //    vel.setUpdateCount(this->getCurrentUpdateCount());
 

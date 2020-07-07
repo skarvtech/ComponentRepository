@@ -44,12 +44,14 @@ public:
 			 */
 			double max_steering;
 			double max_velocity;
+			bool rone_pressed_to_control;
 		
 		public:
 			// default constructor
 			SettingsType() {
 				max_steering = 1.2;
 				max_velocity = 1.0;
+				rone_pressed_to_control = false;
 			}
 		
 			/**
@@ -57,12 +59,14 @@ public:
 			 */
 			inline double getMax_steering() const { return max_steering; }
 			inline double getMax_velocity() const { return max_velocity; }
+			inline bool getRone_pressed_to_control() const { return rone_pressed_to_control; }
 			
 			void to_ostream(std::ostream &os = std::cout) const
 			{
 				os << "Settings(";
 				os << "max_steering = " << max_steering << ", ";
 				os << "max_velocity = " << max_velocity << ", ";
+				os << "rone_pressed_to_control = " << rone_pressed_to_control << ", ";
 				os << ")\n";
 			}
 			

@@ -93,6 +93,7 @@ roboticMiddleware ACE_SmartSoft
 [Settings]
 max_steering 1.2
 max_velocity 1.0
+rone_pressed_to_control false
 
 
 #####################

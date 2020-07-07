@@ -7,5 +7,8 @@ ComponentParameter SmartJoystickNavigationParameters component SmartJoystickNavi
 		
 		/** Defines the minimum steering angle. This is the angle [rad] which will be sent as omega when the joystick axis is at full peak. */
 		max_steering : Double = 1.2
+		
+		/** Controls if the R1 (or similar) button needs to be pressed in order to enable velocity output */
+		rone_pressed_to_control : Boolean = false
 	}
 }

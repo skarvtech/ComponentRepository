@@ -93,6 +93,10 @@ void ParamUpdateHandler::loadParameter(SmartACE::SmartIniParameter &parameter)
 		{
 			globalState.Settings.max_velocity = commitState.Settings.max_velocity;
 		}
+		if(parameter.getBoolean("Settings", "rone_pressed_to_control", commitState.Settings.rone_pressed_to_control))
+		{
+			globalState.Settings.rone_pressed_to_control = commitState.Settings.rone_pressed_to_control;
+		}
 		
 		//
 		// load extended parameters (if any)
